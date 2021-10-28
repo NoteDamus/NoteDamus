@@ -1,3 +1,57 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <ion-router-outlet>
+    <ion-split-pane contentId="main">
+      <!--  the side menu  -->
+      <ion-menu contentId="main">
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>Menu</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-toolbar mode="md">
+            <ion-buttons mode="ios"slot="secondary">
+              <ion-button  slot="secondary">
+                <ion-icon slot="icon-only" size="small" name="settings-outline"></ion-icon>
+              </ion-button>
+              <ion-button  (click)="getDietMeals(diet.id)" slot="secondary">
+                <ion-icon slot="icon-only" size="small" name="chevron-down-outline"></ion-icon>
+              </ion-button>
+              <ion-button  (click)="closeDietMeals()" slot="secondary">
+                <ion-icon slot="icon-only" size="small" name="chevron-up-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <ion-card-subtitle id="tbarsubtitles" style="font-size: 10px;" mode="ios" color="medium">
+              Folder Title
+            </ion-card-subtitle>
+           
+          </ion-toolbar>
+          <mat-accordion>
+            <mat-expansion-panel [expanded]="dailyValues === true" color="primary" (opened)="showDailyValues()"
+              class="mat-elevation-z0">
+              <mat-expansion-panel-header>
+                <ion-card-subtitle style="width: 75%;" mode="ios">x
+                </ion-card-subtitle>
+              </mat-expansion-panel-header>
+
+            </mat-expansion-panel>
+
+
+            <mat-expansion-panel [expanded]="dailyTotalValues === true" color="primary"
+              (opened)="showDailyTotalValues()" class="mat-elevation-z0">
+              <mat-expansion-panel-header>
+                <ion-card-subtitle style="width: 75%;" mode="ios">z
+                </ion-card-subtitle>
+              </mat-expansion-panel-header>
+
+            </mat-expansion-panel>
+          </mat-accordion>
+        </ion-content>
+      </ion-menu>
+
+      <!-- the main content -->
+      <ion-router-outlet id="main"></ion-router-outlet>
+    </ion-split-pane>
+  </ion-router-outlet>
 </ion-app>
