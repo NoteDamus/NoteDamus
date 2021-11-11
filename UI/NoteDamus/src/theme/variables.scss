@@ -3,6 +3,27 @@
 
 /** Ionic CSS Variables **/
 :root {
+
+  ion-title {
+    font-size: 14.5px;
+  }
+  ion-item{
+    font-size: 13px;
+  }
+  ion-title.ios.title-default.hydrated{
+    padding-inline-start: 50px !important;
+      padding-inline-end: 50px !important;
+  }
+  ion-toolbar {
+    --min-height:48px !important;
+    color: var(--ion-color-medium);
+    //background-color: var(--ion-color-land);
+    ion-icon{
+      size: small;
+    }
+    
+    
+  }
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -76,7 +97,7 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   /*
    * Dark Colors
    * -------------------------------------------

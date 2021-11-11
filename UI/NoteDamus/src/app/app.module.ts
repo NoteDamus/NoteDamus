@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot({
     rippleEffect: false,
-    mode: 'md',
+    mode: 'ios',
     //scrollAssist: true,
     //scrollPadding: false,
     //mode: 'md'
