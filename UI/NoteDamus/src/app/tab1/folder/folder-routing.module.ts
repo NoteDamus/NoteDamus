@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { Tab1Page } from './tab1.page';
+import { Routes, RouterModule } from '@angular/router';
+
+import { FolderPage } from './folder.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: Tab1Page,
+    component: FolderPage
   },
   {
-    path: 'folder',
+    path: ':foldername',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class Tab1PageRoutingModule {}
+export class FolderPageRoutingModule {}
