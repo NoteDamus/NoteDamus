@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'rest_framework',
     'accounts',
-    'knox',
     'corsheaders',
 ]
 
-REST_FRAMEWORK = {"DEFAULT_AUTHENTICATION_CLASSES": (
-    "knox.auth.TokenAuthentication",)}
-
+AUTHENTICATION_BACKENDS = (
+    'accounts.backends.CustomAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -94,6 +94,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = 'accounts.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
