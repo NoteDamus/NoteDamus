@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+      <div *ngIf="authError">
+        <div class="col-12 alert alert-danger"> ERROR </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <ion-item mode="md" lines="full">
+            <ion-label for="email"></ion-label>
+            <ion-input [(ngModel)]="loginemail" name="email" [placeholder]="emailtext"
+              (ionChange)="loginEmailChanged()" type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              class="form-control">
+            </ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <ion-item mode="md" lines="full">
+            <ion-label for="password"></ion-label>
+            <ion-input (keyup.enter)="login(loginForm)" [(ngModel)]="loginpassword" name="password"
+              [placeholder]="passwordtext" type="password" class="form-control"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+      <ion-grid class="ion-text-center">
+      <ion-row>
+        <ion-col>
+          <ion-button  mode="ios" type="submit" size="small"
+            color="danger" expand="block">Sign in</ion-button>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col>
+          <b style="padding-top: 0px;" (click)="presentPasswordReset()"
+            class="small-text">Forgot Yout password?</b>
+        </ion-col>
+      </ion-row>
+      <ion-row style="margin-top: 20px;">
+        <ion-col>
+          <b style="padding-top: 0px;" (click)="goToBeginning()" class="small-text">Don't have an account</b>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+    </form>
+  </div>
+</ion-content>
