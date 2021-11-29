@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'rest_framework',
     'accounts',
+    'knox',
     'corsheaders',
 ]
 
@@ -46,6 +47,9 @@ AUTHENTICATION_BACKENDS = (
     'accounts.backends.CustomAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+REST_FRAMEWORK = {"DEFAULT_AUTHENTICATION_CLASSES": (
+                  "knox.auth.TokenAuthentication",)}
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
