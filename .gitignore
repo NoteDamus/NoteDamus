@@ -1,0 +1,46 @@
+# Python bytecode
+*.pyc
+
+# Common editor swap-files
+*.swp
+*~
+*.swo
+*.bak
+
+# generated Dockerfiles
+Dockerfile
+
+# direnv
+.envrc
+
+# pyenv file declaring python version/venv to be used
+.python-version
+
+# The cache created by pytest when running unit tests locally
+.pytest_cache
+
+# ignore test-launcher reports
+output.xml
+report.html
+log.html
+
+# Coverage data
+.coverage
+
+# Coverage html reports
+htmlcov/
+
+# Ignore vscode settings
+.vscode/
+
+# Ctags
+.tags
+
+# Ignore pylint settings
+.pylintrc
+
+# make related
+make.err
+make.out
+
+my_env/

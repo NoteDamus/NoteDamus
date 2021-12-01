@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Folder, Note, Image, Source
 from django.contrib.auth import authenticate
 
 
@@ -44,3 +44,27 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credentials")
+
+
+class FolderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Folder
+        fields = "__all__"
+
+
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Note
+        fields = "__all__"
+
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = "__all__"
+
+
+class SourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Source
+        fields = "__all__"
