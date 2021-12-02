@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.conf.urls import url, include
 from .views import RegisterAPI, LoginAPI, UserAPI
 from .viewsets import (
     FolderViewSet,
@@ -16,7 +17,8 @@ router.register("notes", NoteViewSet, "notes")
 router.register("images", ImageViewSet, "images")
 router.register("sources", SourceViewSet, "sources")
 
-urlpatterns = router.urls + [
+urlpatterns = [
+    url(r'^', include(router.urls)),
     path("auth", include("knox.urls")),
     path("auth/register", RegisterAPI.as_view()),
     path("auth/login", LoginAPI.as_view()),
