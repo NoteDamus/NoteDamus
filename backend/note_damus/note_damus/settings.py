@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'rest_framework',
+    'rest_framework_swagger',
     'accounts',
     'knox',
     'corsheaders',
@@ -75,13 +76,16 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': { # Adding this section should work around the issue.
+            'staticfiles' : 'django.templatetags.static',
+            },
         },
     },
 ]
 
 WSGI_APPLICATION = 'note_damus.wsgi.application'
 
-
+REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS':'rest_framework.schemas.coreapi.AutoSchema' }
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
