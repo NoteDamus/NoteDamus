@@ -67,7 +67,7 @@ form .txt_field {
     width: 100%;
     font-size: 11px;
     text-align: center;
-    margin: 5px 0 20px 5px;
+    margin: -5px 0 10px 5px;
     color: #a6a6a6;
     cursor: pointer;
 }
@@ -134,16 +134,6 @@ input[type="submit"]:hover {
     display: none;
 }
 
-#signup_center {
-    display: none;
-}
-
-#main_center {
-    display: none;
-    padding: 0;
-    text-align: center;
-}
-
 #main_center label {
     color: #666666;
 }
@@ -158,14 +148,14 @@ input[type="submit"]:hover {
 #folders,
 #colors_label,
 #colors {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #folders_label,
 #folders,
 #colors_label,
 #colors {
-    margin: 10px 0 0 0;
+    margin: 10px 0 10px 0;
 }
 
 #last_note_label {
@@ -178,12 +168,12 @@ input[type="submit"]:hover {
 
 #to_dashboard_btn {
     float: left;
-    margin: 0 0 10px 20px;
+    margin: 0 0 10px 10px;
 }
 
 #logut_btn {
     float: right;
-    margin: 0 20px 10px 0;
+    margin: 0 10px 10px 0;
 }
 
 #to_dashboard_btn,
@@ -197,10 +187,45 @@ input[type="submit"]:hover {
     border: none;
 }
 
+#main_center form{
+    margin: 10px 0 10px 0;
+}
+
+
 #login_title {
     display: block;
 }
 
 #login_center {
     display: block;
+}
+
+#signup_center {
+    display: none;
+}
+
+#main_center {
+    display: none;
+    padding: 0;
+    text-align: center;
+}
+
+.danger{
+    margin-bottom: -15px;
+    color: rgb(253, 21, 21);
+    padding: 0;
+    font-size: 10px;
+    text-align: center;
+}
+
+#invalid-login, #invalid-submit, #invalid-match{
+    display: none;
+}
+
+.login-pass{
+    margin-top: 5px;
+}
+
+#login_submit, #signup_submit{
+    margin-top: -10px;
 }
