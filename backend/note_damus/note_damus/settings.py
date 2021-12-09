@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'knox',
     'corsheaders',
+    'django_filters',
 ]
 
 AUTHENTICATION_BACKENDS = (
