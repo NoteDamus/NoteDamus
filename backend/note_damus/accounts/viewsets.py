@@ -13,9 +13,9 @@ from rest_framework.decorators import action
 
 
 class FolderViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
     serializer_class = FolderSerializer
 
     def get_queryset(self):
@@ -26,9 +26,9 @@ class FolderViewSet(viewsets.ModelViewSet):
 
 
 class NoteViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
     serializer_class = NoteSerializer
 
     def get_queryset(self):
@@ -36,9 +36,9 @@ class NoteViewSet(viewsets.ModelViewSet):
 
 
 class ImageViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
     serializer_class = ImageSerializer
 
     def get_queryset(self):
@@ -46,9 +46,9 @@ class ImageViewSet(viewsets.ModelViewSet):
 
 
 class SourceViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
     serializer_class = SourceSerializer
 
     def get_queryset(self):
