@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Folder, Note, Image, Source
+from .models import User, Folder, Note, Image
 from django.contrib.auth import authenticate
 
 
@@ -16,7 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id',
+        fields = ('id', 
                   'first_name',
                   'last_name',
                   'email',
@@ -57,14 +57,7 @@ class NoteSerializer(serializers.ModelSerializer):
         model = Note
         fields = "__all__"
 
-
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = "__all__"
-
-
-class SourceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Source
         fields = "__all__"
