@@ -1,5 +1,7 @@
 {
   "name": "NoteDamus",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

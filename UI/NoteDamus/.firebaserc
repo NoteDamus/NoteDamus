@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "notedamus-cad4d": {
+      "hosting": {
+        "app": [
+          "notedamus-cad4d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "notedamus-cad4d"
+  }
+}

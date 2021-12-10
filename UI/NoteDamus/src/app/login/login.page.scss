@@ -1,0 +1,145 @@
+
+::ng-deep .my-custom-class .alert-wrapper,.alert-message, .alert-message  {
+  
+    --min-width: 90%;
+    --min-height: 90%;
+    
+    
+  }// 
+  ::ng-deep .my-custom-class .alert-message {
+  
+    
+  max-height: 80%;
+  
+  }
+  ::ng-deep .my-custom-class .sc-ion-alert-md {
+  
+    
+  min-height: 60px;
+  
+  }
+  .ion-padding {
+    --padding-top: var(--ion-padding, 10px) !important;
+  }
+  
+  ion-slides {
+   
+    
+    ion-radio-group {
+      ion-item  {
+        border-radius: 4px;
+        margin-top:9px;
+        margin: 5px;
+        font-size: 11.5px;
+        border: #666666 1px solid;
+        //background-color: blue;
+      }
+      ion-label {
+        p {
+          font-size: 11px;
+          margin: 0 0 4px;
+        }
+      }
+     
+  
+    }
+  
+    #activityTitle{
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    .row {
+      
+      margin: 6px;
+      border: #666666 1px solid;
+      border-radius: 4px;
+    }
+    
+    .small-text{
+      padding-top: 20px;
+    }
+   
+    
+    
+     
+      //height: 100%;
+      ion-item  {
+        border-radius: 4px;
+        --highlight-color-focused: none;
+        //background-color: rgba($color: #000000, $alpha: 0.02);
+        //padding-top: 6px;
+        //border: rgba(0, 0, 0, 0.3) 1px inset;
+      }
+      ion-button{
+        border-radius: 4px;
+      }
+    }
+  
+    .swiper-slide {
+      display: block;
+    }
+  
+  
+  
+    .swiper-slide img {
+      max-height: 50%;
+      max-width: 80%;
+      margin: 0px 0 40px;
+      pointer-events: none;
+    }
+  
+    b {
+      font-weight: 500;
+    }
+  
+    p {
+    //  padding: 0 40px;
+      font-size: 13px;
+      line-height: 1.2;
+      color: var(--ion-color-step-600, #60646b);
+    }
+  
+    p b {
+      color: var(--ion-text-color, #000000);
+    }
+    .divider {
+      display: flex;
+      
+      &:before,
+      &:after {
+        content: "";
+        flex: 1;
+      }
+  }
+    
+  .line {
+      align-items: center;
+      margin: 1em -1em;
+      color: #cccccc;
+      
+      &:before,
+      &:after {
+        height: 1px;
+        margin: 0 1em;
+      }
+  } 
+  
+  .one-line {
+      &:before,
+      &:after {
+         background: #cccccc;
+      }
+  }
+  
+  .auth-form ion-grid,
+  .auth-form ion-row {
+      height: 100%;
+      justify-content: center;
+  }
+  
+  .already {
+      display: block;
+      text-align: center;
+      padding-bottom: 10px;
+  }
+  

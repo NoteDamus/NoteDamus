@@ -1,0 +1,15 @@
+<ion-content>
+  
+    <ion-buttons>
+    <ion-button  (click)="closeModal()" style="margin-top:10px;margin-left: 20px;background-color: rgba(0, 0, 0, 0.3);border-radius: 7px;font-weight: 600;">
+      <ion-icon slot="icon-only" color="light" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-grid>
+      <ion-card-header>
+        <ion-card-subtitle></ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{myNote}}
+      </ion-card-content>
+  </ion-grid>

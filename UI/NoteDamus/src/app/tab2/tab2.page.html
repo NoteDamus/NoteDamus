@@ -13,5 +13,15 @@
 
 <ion-content [fullscreen]="true">
   
+  <ion-item lines="full">
+    <ion-label>Url</ion-label>
+    <ion-input [(ngModel)]="url">
 
+    </ion-input>
+    <ion-button (click)="execute()">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </ion-button>
+  </ion-item>
+  
+  
 </ion-content>

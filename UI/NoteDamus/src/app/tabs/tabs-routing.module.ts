@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-
+import { GuardGuard } from '../auth/guard.guard';
 const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
+     //canActivate: [GuardGuard],
     children: [
       {
         path: 'tab1',

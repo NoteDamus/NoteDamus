@@ -10,43 +10,14 @@
           </ion-toolbar>
         </ion-header>
         <ion-content>
-          <ion-toolbar mode="md">
-            <ion-buttons mode="ios"slot="secondary">
-              <ion-button  slot="secondary">
-                <ion-icon slot="icon-only" size="small" name="settings-outline"></ion-icon>
-              </ion-button>
-              <ion-button  (click)="getDietMeals(diet.id)" slot="secondary">
-                <ion-icon slot="icon-only" size="small" name="chevron-down-outline"></ion-icon>
-              </ion-button>
-              <ion-button  (click)="closeDietMeals()" slot="secondary">
-                <ion-icon slot="icon-only" size="small" name="chevron-up-outline"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-            <ion-card-subtitle id="tbarsubtitles" style="font-size: 10px;padding-left: 15px;" mode="ios" color="medium">
-              example main Folder Title
-            </ion-card-subtitle>
-           
-          </ion-toolbar>
-          <mat-accordion>
-            <mat-expansion-panel [expanded]="dailyValues === true" color="primary" (opened)="showDailyValues()"
-              class="mat-elevation-z0">
-              <mat-expansion-panel-header>
-                <ion-card-subtitle style="width: 75%;" mode="ios">x folder
-                </ion-card-subtitle>
-              </mat-expansion-panel-header>
-
-            </mat-expansion-panel>
-
-
-            <mat-expansion-panel [expanded]="dailyTotalValues === true" color="primary"
-              (opened)="showDailyTotalValues()" class="mat-elevation-z0">
-              <mat-expansion-panel-header>
-                <ion-card-subtitle style="width: 75%;" mode="ios">z folder
-                </ion-card-subtitle>
-              </mat-expansion-panel-header>
-
-            </mat-expansion-panel>
-          </mat-accordion>
+          <ion-item  detail="false" [routerLink]="['/tabs/tab1']" lines="full">Folders
+            <ion-icon    color="medium" slot="end" name="folder-outline"></ion-icon>
+          </ion-item>
+        
+          <ion-item  detail="false" [routerLink]="['/tabs/tab3']" lines="full">Account
+            <ion-icon    color="medium" slot="end" name="person-outline"></ion-icon>
+          </ion-item>
+          
         </ion-content>
       </ion-menu>
 

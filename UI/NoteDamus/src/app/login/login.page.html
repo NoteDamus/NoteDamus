@@ -1,59 +1,311 @@
+<ion-header id="tabsheader">
+
+</ion-header>
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-buttons *ngIf="currentSlideIndex != 0 && currentSlideIndex != 5" slot="start">
+      <ion-button style="background-color: rgba(0, 0, 0, 0.1);border-radius: 7px;font-weight: 600;"
+        (click)="swipePrev()" color="angpink">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="currentSlideIndex != 1 && currentSlideIndex != 5" slot="end">
+      <ion-button style="background-color: rgba(0, 0, 0, 0.1);border-radius: 7px;font-weight: 600;"  (click)="swipeNext()"
+        color="angpink">
+        <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div>
-    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <ion-slides mode="md" #mySlider>
+    
 
-      <div *ngIf="authError">
-        <div class="col-12 alert alert-danger"> ERROR </div>
-      </div>
 
-      <div class="row">
+
+    
+
+
+    <!--
+    <ion-slide>
+      <div class="mt-4">
         <div>
-          <ion-item mode="md" lines="full">
-            <ion-label for="email"></ion-label>
-            <ion-input [(ngModel)]="loginemail" name="email" [placeholder]="emailtext"
-              (ionChange)="loginEmailChanged()" type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-              class="form-control">
-            </ion-input>
-          </ion-item>
+        </div>
+
+        <div>
+          <div *ngIf="authError">
+            <div class="col-12 alert alert-danger">
+              {{ authError?.message }}
+            </div>
+          </div>
+          <form #userRegForm="ngForm" (ngSubmit)="createUser(userRegForm)">
+           
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <ion-item lines="full" mode="md">
+                  <ion-label for="email"></ion-label>
+                  <ion-input [(ngModel)]="email" (ionChange)="registerEmailChanged()" placeholder="email"
+                    name="email" type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" inputmode="email"
+                    class="form-control">
+                  </ion-input>
+                </ion-item>
+              </div>
+            </div>
+            <div>
+              <div class="row">
+                <div class="col-md-12 mb-2">
+                  <ion-item lines="full" mode="md">
+                    <ion-label for="password"></ion-label>
+                    <ion-input [(ngModel)]="password" placeholder="password" name="password" type="password"
+                      class="form-control"></ion-input>
+                  </ion-item>
+
+                </div>
+              </div>
+              <div>
+                <div class="row">
+                  <div class="col-md-12 mb-2">
+                    <ion-item lines="full" mode="md">
+                      <ion-label for="passwordConfirm"></ion-label>
+                      <ion-input [(ngModel)]="passwordConfirm" name="password Confirm" placeholder="password Confirm"
+                        type="password" class="form-control">
+                      </ion-input>
+                    </ion-item>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div style="padding-top: 20px;" class="col-md-12">
+                  <ion-button [disabled]="
+                  !passwordConfirm || 
+                  passwordConfirm != password ||
+                  !registerEmailValidation" mode="ios" size="small" expand="block" class="btn btn-primary"
+                    type="submit">Sign up
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
+      <ion-grid>
 
-      <div class="row">
-        <div>
-          <ion-item mode="md" lines="full">
-            <ion-label for="password"></ion-label>
-            <ion-input (keyup.enter)="login(loginForm)" [(ngModel)]="loginpassword" name="password"
-              [placeholder]="passwordtext" type="password" class="form-control"></ion-input>
-          </ion-item>
-        </div>
+        <ion-row>
+          <ion-col>
+            <span class="divider line one-line">Already have an account?</span>
+            <ion-button mode="ios" size="small" outline (click)="swipeNext()" expand="block" color="light">
+              Sign in
+              <ion-icon slot="icon-only" slot="start" name="enter-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  -->
+  <ion-slide>
+    <div class="mt-4">
+      <div>
       </div>
-      <ion-grid class="ion-text-center">
-      <ion-row>
-        <ion-col>
-          <ion-button  mode="ios" type="submit" size="small"
-            color="danger" expand="block">Sign in</ion-button>
-        </ion-col>
-      </ion-row>
-  
-      <ion-row>
-        <ion-col>
-          <b style="padding-top: 0px;" (click)="presentPasswordReset()"
-            class="small-text">Forgot Yout password?</b>
-        </ion-col>
-      </ion-row>
-      <ion-row style="margin-top: 20px;">
-        <ion-col>
-          <b style="padding-top: 0px;" (click)="goToBeginning()" class="small-text">Don't have an account</b>
-        </ion-col>
-      </ion-row>
 
+      <div>
+        <div *ngIf="authError">
+          <div class="col-12 alert alert-danger">
+            {{ authError?.message }}
+          </div>
+        </div>
+        <form #userRegForm="ngForm" (ngSubmit)="registerUser()">
+         
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <ion-item lines="full" mode="md">
+                <ion-label for="firstname"></ion-label>
+                <ion-input [(ngModel)]="firstname"  placeholder="First name"
+                  name="firstname" type="text"  inputmode="text"
+                  class="form-control">
+                </ion-input>
+              </ion-item>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <ion-item lines="full" mode="md">
+                <ion-label for="lastname"></ion-label>
+                <ion-input [(ngModel)]="lastname"  placeholder="Last name"
+                  name="lastname" type="text"  inputmode="text"
+                  class="form-control">
+                </ion-input>
+              </ion-item>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <ion-item lines="full" mode="md">
+                <ion-label for="email"></ion-label>
+                <ion-input [(ngModel)]="email" (ionChange)="registerEmailChanged()" placeholder="email"
+                  name="email" type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" inputmode="email"
+                  class="form-control">
+                </ion-input>
+              </ion-item>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <ion-item lines="full" mode="md">
+                  <ion-label for="password"></ion-label>
+                  <ion-input [(ngModel)]="password" placeholder="password" name="password" type="password"
+                    class="form-control"></ion-input>
+                </ion-item>
+
+              </div>
+            </div>
+            <div>
+              <div class="row">
+                <div class="col-md-12 mb-2">
+                  <ion-item lines="full" mode="md">
+                    <ion-label for="passwordConfirm"></ion-label>
+                    <ion-input [(ngModel)]="passwordConfirm" name="password Confirm" placeholder="password Confirm"
+                      type="password" class="form-control">
+                    </ion-input>
+                  </ion-item>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="padding-top: 20px;" class="col-md-12">
+                <ion-button [disabled]="
+                !passwordConfirm || 
+                passwordConfirm != password ||
+                !registerEmailValidation" mode="ios" size="small" expand="block" class="btn btn-primary"
+                  type="submit">Sign up
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <span class="divider line one-line">Already have an account?</span>
+          <ion-button mode="ios" size="small" outline (click)="swipeNext()" expand="block" color="light">
+            Sign in
+            <ion-icon slot="icon-only" slot="start" name="enter-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
     </ion-grid>
-    </form>
-  </div>
+  </ion-slide>
+
+<!--
+    <ion-slide>
+      <div>
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+          <div *ngIf="authError">
+            <div class="col-12 alert alert-danger"> error </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <ion-item mode="md" lines="full">
+                <ion-label for="email"></ion-label>
+                <ion-input [(ngModel)]="loginemail" name="email" placeholder="email"
+                  (ionChange)="loginEmailChanged()" type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                  class="form-control">
+                </ion-input>
+              </ion-item>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <ion-item mode="md" lines="full">
+                <ion-label for="password"></ion-label>
+                <ion-input (keyup.enter)="login(loginForm)" [(ngModel)]="loginpassword" name="password"
+                  placeholder="password" type="password" class="form-control"></ion-input>
+              </ion-item>
+            </div>
+          </div>
+
+          <ion-row>
+            <ion-col>
+              <ion-button [disabled]="!loginEmailValidation || !loginpassword " mode="ios" type="submit" size="small"
+                color="danger" expand="block">Sign in</ion-button>
+            </ion-col>
+          </ion-row>
+         
+          <ion-row>
+            <ion-col>
+              <b style="padding-top: 0px;" (click)="presentPasswordReset()"
+                class="small-text">Forgot your password?</b>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-top: 20px;">
+            <ion-col>
+              <b style="padding-top: 0px;" (click)="goToBeginning()" class="small-text">Don't have an account?</b>
+            </ion-col>
+          </ion-row>
+
+
+        </form>
+      </div>
+    </ion-slide>
+  -->
+  <ion-slide>
+    <div>
+      <form #loginForm="ngForm" (ngSubmit)="loginDjango(loginForm)">
+
+        <div *ngIf="authError">
+          <div class="col-12 alert alert-danger"> error </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <ion-item mode="md" lines="full">
+              <ion-label for="email"></ion-label>
+              <ion-input [(ngModel)]="loginemail" name="email" placeholder="email"
+                (ionChange)="loginEmailChanged()" type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                class="form-control">
+              </ion-input>
+            </ion-item>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <ion-item mode="md" lines="full">
+              <ion-label for="password"></ion-label>
+              <ion-input (keyup.enter)="login()" [(ngModel)]="loginpassword" name="password"
+                placeholder="password" type="password" class="form-control"></ion-input>
+            </ion-item>
+          </div>
+        </div>
+
+        <ion-row>
+          <ion-col>
+            <ion-button  [disabled]="!loginEmailValidation || !loginpassword " mode="ios" type="submit" size="small"
+              color="danger" expand="block">Sign in</ion-button>
+          </ion-col>
+        </ion-row>
+       
+        
+        <ion-row style="margin-top: 20px;">
+          <ion-col>
+            <b style="padding-top: 0px;" (click)="goToBeginning()" class="small-text">Don't have an account?</b>
+          </ion-col>
+        </ion-row>
+
+
+      </form>
+    </div>
+  </ion-slide>
+
+
+
+
+  </ion-slides>
 </ion-content>

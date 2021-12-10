@@ -2,10 +2,31 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-    </ion-buttons>    <ion-title>sub folder {{name}}</ion-title>
+    </ion-buttons>    <ion-title>{{name}}</ion-title>
+    <ion-buttons mode="ios"slot="primary">
+      <ion-button  [disabled]="true"  slot="secondary">
+        <ion-icon slot="icon-only" name="folder"></ion-icon>
+      </ion-button>
+      <ion-button  (click)="addNote()" slot="secondary">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+      
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item-divider>
+    Notes
+  </ion-item-divider>
+  
+  <div *ngFor="let item of notes">
+    <ion-item style="height: 60px !important;border-left: 5px solid #666666; padding-top: 5px;;" button lines="none" detail="true" routerLink="folder" [queryParams]="{subfoldername: item.name}">
+      <ion-label>
+        <h3 >{{item.title}}</h3>
+        <!--<p>{{item[0]}}</p>-->
+        <p style="font-style: italic;">{{item.note}}</p>
+      </ion-label>
+    </ion-item>
+  </div>
 </ion-content>
