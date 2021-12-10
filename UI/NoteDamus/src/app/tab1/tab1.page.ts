@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { OperationsService } from '../services/operations.service';
 import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -13,15 +14,22 @@ export class Tab1Page implements OnInit{
   constructor(
     private alertController:AlertController,
     private operations:OperationsService,
-    private storage: Storage
+    private storage: Storage,
+    private router:Router
   ) {}
-
+  userid
   async ngOnInit(){
    // this.getFolders();
    this.storage.create();
-   let userid = await this.storage.get("userId")
-   console.log("userId",userid)
+   this.userid = await this.storage.get("userId")
+   if(!this.userid || this.userid == undefined){
+     this.router.navigate(['/login']);
+   }
+   console.log("userId",this.userid)
+   setTimeout(() => {
     this.getFoldersDjango();
+   }, 1500);
+  
   }
   async addFolderAlertPrompt() {
     const alert = await this.alertController.create({
@@ -66,7 +74,7 @@ export class Tab1Page implements OnInit{
 
   }
   folders:any[] = [];
-  getFolders(){
+ /* getFolders(){
     this.operations.getFolder().subscribe(items => {
       this.folders = [];
       items.forEach(item =>{
@@ -75,12 +83,12 @@ export class Tab1Page implements OnInit{
         console.log(datam)
       })
     })
-  }
+  }*/
 
   folderss;
   async getFoldersDjango(){
     this.folderss = [];
-    let userid = await this.storage.get("userId")
+    let userid = this.userid
     let params = {
       
       "user": userid,

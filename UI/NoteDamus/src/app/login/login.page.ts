@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, ToastController } from '@ionic/angular'
 import { LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthService } from '../auth/auth.service'
+//import { AngularFireAuth } from '@angular/fire/auth';
+//import { AuthService } from '../auth/auth.service'
 import { Router } from '@angular/router';
 import firebase from 'firebase/app'; import 'firebase/auth';
 import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
@@ -61,10 +61,10 @@ export class LoginPage implements OnInit {
   loading;
   constructor(
     private http: HttpClient,
-    private auth: AuthService,
+   // private auth: AuthService,
     public loadingController: LoadingController,
     private alertController: AlertController,
-    private afAuth: AngularFireAuth,
+    //private afAuth: AngularFireAuth,
     private router: Router,
     private toast:ToastService,
     private storage: Storage
@@ -75,11 +75,11 @@ export class LoginPage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
-      firebase.auth().onAuthStateChanged( user => {
+    /*  firebase.auth().onAuthStateChanged( user => {
         if( user){
           this.router.navigate(['/tabs/tab1']);
         }
-      })
+      })*/
       
     // this.loading = this.loadingController.create({
     // message: 'Connecting ...'
@@ -168,7 +168,7 @@ export class LoginPage implements OnInit {
           handler: data => {
             console.log(JSON.stringify(data)); //to see the object
             console.log(data.Email);
-            this.auth.sendPasswordReset(data.Email, 'en')
+           // this.auth.sendPasswordReset(data.Email, 'en')
 
           }
         }
@@ -236,12 +236,12 @@ export class LoginPage implements OnInit {
       this.loginEmailValidation = false
     }
   }
-  createUser(Registerfrm) {
+  /*createUser(Registerfrm) {
     this.auth.createUser(Registerfrm.value);
-  }
-    login(Loginfrm) {
+  }*/
+   /* login(Loginfrm) {
       this.auth.login(Loginfrm.value.email, Loginfrm.value.password, "en");
-    }
+    }*/
 
 
 

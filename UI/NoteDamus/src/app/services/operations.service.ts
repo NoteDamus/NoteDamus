@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import firebase from 'firebase/app';import 'firebase/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+//import firebase from 'firebase/app';import 'firebase/auth';
+//import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastService } from '../auth/toast.service';
 
 @Injectable({
@@ -9,13 +9,13 @@ import { ToastService } from '../auth/toast.service';
 export class OperationsService {
 
   constructor(
-    private db:AngularFirestore,
+   // private db:AngularFirestore,
     private toast: ToastService
   ) { }
 
 
 
-  addNote(data){
+  /*addNote(data){
     
     const userid = firebase.auth().currentUser.uid
     if (userid) {
@@ -57,5 +57,5 @@ getSubFolders(name){
   if (userid) {
     return this.db.collection(`Folders/${userid}/folders`, ref=> ref.where("main", "==", name)).snapshotChanges()
   } 
-}
+}*/
 }

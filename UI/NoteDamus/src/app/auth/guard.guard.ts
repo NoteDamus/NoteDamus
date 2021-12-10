@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 //import { AuthService} from './auth.service'
 //import { tap, map, take } from 'rxjs/operators';
 import { ToastService } from './toast.service';
-import firebase from 'firebase/app';import 'firebase/auth';
+//import firebase from 'firebase/app';import 'firebase/auth';
 //import { AngularFireAuth } from '@angular/fire/compat/auth';
 //import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './auth.service';
@@ -28,7 +28,7 @@ export class GuardGuard implements CanActivate {
   ): boolean | Observable<boolean> | Promise<boolean> {
     return new Promise((resolve, reject) => {      
       
-    firebase.auth().onAuthStateChanged( user => {
+   /* firebase.auth().onAuthStateChanged( user => {
       if( user){
         resolve(true)
       }else{
@@ -37,7 +37,7 @@ export class GuardGuard implements CanActivate {
         this.router.navigate(['/login']);
         reject()
       }
-    })
+    })*/
   })
     
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import firebase from 'firebase/app'; import 'firebase/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+//import { AngularFireAuth } from '@angular/fire/auth';
+//import firebase from 'firebase/app'; import 'firebase/auth';
+//import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { ToastService } from './toast.service';
 import { LoadingController, Platform } from '@ionic/angular';
@@ -19,8 +19,8 @@ export class AuthService {
 
   newUser: any;
   constructor(
-    private afAuth: AngularFireAuth,
-    private db: AngularFirestore,
+    //private afAuth: AngularFireAuth,
+    //private db: AngularFirestore,
     private router: Router,
     public toast: ToastService,
     //private fb: Facebook,
@@ -31,9 +31,9 @@ export class AuthService {
     
   ) {
    
-    firebase.auth().useDeviceLanguage()
+  //  firebase.auth().useDeviceLanguage()
   }
-  getUserMode(){
+ /* getUserMode(){
     var userid = firebase.auth().currentUser.uid
     if(userid){
       return this.db.collection('usernames',ref => ref
@@ -287,5 +287,5 @@ Parse(errorCode: string): string {
     }
   }
     return message;
-  }
+  }*/
 }

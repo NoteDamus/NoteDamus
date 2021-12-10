@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { NoteComponent } from 'src/app/components/note/note.component';
-import { OperationsService } from 'src/app/services/operations.service';
+//import { OperationsService } from 'src/app/services/operations.service';
 import axios, { AxiosRequestConfig, AxiosPromise, AxiosResponse } from 'axios';
 import { Storage } from '@ionic/storage-angular';
 @Component({
@@ -16,7 +16,7 @@ folderId;
   constructor(
     private router:ActivatedRoute,
     private alertController:AlertController,
-    private operations:OperationsService,
+    //private operations:OperationsService,
     private modalController:ModalController,
     private storage: Storage
 
@@ -73,19 +73,19 @@ folderId;
   
   addFolder(folderName) {
     var data = { name: folderName, date: new Date(),main: this.name }
-    this.operations.addFolder(data);
+    //this.operations.addFolder(data);
 
   }
   folders:any[] = [];
   getSubFolders(){
-    this.operations.getSubFolders(this.name).subscribe(items => {
+   /* this.operations.getSubFolders(this.name).subscribe(items => {
       this.folders = [];
       items.forEach(item =>{
         var datam:any = item.payload.doc.data();
         this.folders.push(datam);
         console.log(datam)
       })
-    })
+    })*/
   }
   note;
   title;
@@ -138,19 +138,19 @@ folderId;
 
   addNoteDb(title, note){
     let data = {main: this.name, title:title, note:note};
-    this.operations.addNote(data);
+   // this.operations.addNote(data);
   }
 
   notes:any[]=[];
   getNotes(){
-    this.operations.getNotes(this.name).subscribe(items=>{
+    /*this.operations.getNotes(this.name).subscribe(items=>{
       this.notes = [];
       items.forEach(item => {
         let datam:any = item.payload.doc.data();
         datam.id = item.payload.doc.id;
         this.notes.push(datam);
       })
-    })
+    })*/
   }
 
 

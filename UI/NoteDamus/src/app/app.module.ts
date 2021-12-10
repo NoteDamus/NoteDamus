@@ -9,11 +9,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+//import { AngularFireModule } from '@angular/fire';
+//import { AngularFireAuthModule } from '@angular/fire/auth';
 //import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+//import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+//import { AngularFireStorageModule } from '@angular/fire/storage';
 //import { AngularFireAnalyticsModule, ScreenTrackingService,  UserTrackingService } from '@angular/fire/analytics';
 //import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
@@ -38,10 +38,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
   HttpClientModule,
   AppRoutingModule, BrowserAnimationsModule, MaterialModule, 
-  AngularFireModule.initializeApp(environment.firebase),
-  AngularFirestoreModule.enablePersistence(),
-  AngularFireAuthModule,
-  AngularFireStorageModule,
+ // AngularFireModule.initializeApp(environment.firebase),
+  //AngularFirestoreModule.enablePersistence(),
+  //AngularFireAuthModule,
+  //AngularFireStorageModule,
   ServiceWorkerModule.register('ngsw-worker.js', {
     enabled: environment.production,
     // Register the ServiceWorker as soon as the app is stable
@@ -50,7 +50,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
   }), 
 ],
   providers: [
-    AngularFirestore,
+   // AngularFirestore,
     InAppBrowser,
     HttpClientModule,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
