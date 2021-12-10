@@ -53,7 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        Folder.objects.create(user=self, title=f'0_{self.email}')
+        Folder.objects.create(user=self, title='general')
 
 class Folder(models.Model):
     class Meta:
