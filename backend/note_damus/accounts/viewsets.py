@@ -4,31 +4,37 @@ from knox.models import AuthToken
 from .serializers import (
     FolderSerializer,
     NoteSerializer,
-    ImageSerializer,
-    SourceSerializer
+    ImageSerializer
 )
-from .models import Folder, Note, Image, Source
+from .models import Folder, Note, Image
 from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 class FolderViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
+    filter_backends = [DjangoFilterBackend,]
+
+    filterset_fields = {
+        'user': ['exact'],
+        'title' : ['icontains', 'exact']
+    }
     serializer_class = FolderSerializer
 
     def get_queryset(self):
-        return self.request.user.folders.all()
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        return Folder.objects.all()
 
 
 class NoteViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
+    filter_backends = [DjangoFilterBackend,]
+    filterset_fields = {
+        'folder' : ['exact']
+    }
     serializer_class = NoteSerializer
 
     def get_queryset(self):
@@ -36,20 +42,11 @@ class NoteViewSet(viewsets.ModelViewSet):
 
 
 class ImageViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
+    # permission_classes = [
+    #     permissions.IsAuthenticated,
+    # ]
+    filter_backends = [DjangoFilterBackend,]
     serializer_class = ImageSerializer
 
     def get_queryset(self):
         return Image.objects.all()
-
-
-class SourceViewSet(viewsets.ModelViewSet):
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
-    serializer_class = SourceSerializer
-
-    def get_queryset(self):
-        return Source.objects.all()

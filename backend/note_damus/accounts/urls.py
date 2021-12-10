@@ -4,8 +4,7 @@ from .views import RegisterAPI, LoginAPI, UserAPI
 from .viewsets import (
     FolderViewSet,
     NoteViewSet,
-    ImageViewSet,
-    SourceViewSet
+    ImageViewSet
 )
 from rest_framework import routers
 from knox import views as knox_views
@@ -15,7 +14,6 @@ router = routers.DefaultRouter()
 router.register("folders", FolderViewSet, "folders")
 router.register("notes", NoteViewSet, "notes")
 router.register("images", ImageViewSet, "images")
-router.register("sources", SourceViewSet, "sources")
 
 urlpatterns = [
     url(r'^', include(router.urls)),

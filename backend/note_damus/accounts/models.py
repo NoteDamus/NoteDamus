@@ -51,8 +51,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        Folder.objects.create(user=self, title='general')
 
 class Folder(models.Model):
+    class Meta:
+        unique_together = ['user', 'title']
+
     user = models.ForeignKey(
         'User',
         on_delete=models.CASCADE,
@@ -60,11 +66,9 @@ class Folder(models.Model):
         blank=True,
         null=True)
     title = models.CharField(
-        max_length=MAX_LENGTH,
-        unique=True,
+        max_length=2*MAX_LENGTH,
         null=False,
-        blank=False,
-        validators=[NAME_VALIDATOR]
+        blank=False
     )
     creation_date = models.DateTimeField(default=timezone.now)
 
@@ -80,12 +84,15 @@ class Note(models.Model):
         blank=False,
         null=False
     )
-    source = models.OneToOneField(
-        'Source',
-        on_delete=models.SET_NULL,
+    color = models.CharField(
+        max_length=5*MAX_LENGTH,
         null=True,
-        blank=True,
-        related_name='source_of'
+        blank=True
+    )
+    source = models.CharField(
+        max_length=5*MAX_LENGTH,
+        null=True,
+        blank=True
     )
     creation_date = models.DateTimeField(default=timezone.now)
 
@@ -108,15 +115,3 @@ class Image(models.Model):
         blank=False
     )
     creation_date = models.DateTimeField(default=timezone.now)
-
-
-class Source(models.Model):
-    source_type = models.CharField(
-        max_length=10,
-        null=False,
-        blank=False
-    )
-    address = models.CharField(
-        max_length=2*MAX_LENGTH,
-        null=False,
-        blank=False)
