@@ -104,7 +104,7 @@ input[type="submit"]:hover {
 }
 
 .signup_link button,
-#to_dashboard_btn,
+#go_dashboard_btn,
 #logut_btn {
     border: none;
     color: #2691d9;
@@ -113,12 +113,12 @@ input[type="submit"]:hover {
 }
 
 .signup_link button:hover,
-#to_dashboard_btn:hover,
+#go_dashboard_btn:hover,
 #logut_btn {
     text-decoration: underline;
 }
 
-#to_dashboard_btn:hover {
+#go_dashboard_btn:hover {
     color: rgb(12, 177, 34);
 }
 
@@ -128,10 +128,6 @@ input[type="submit"]:hover {
 
 #signup_submit {
     margin-bottom: 15px;
-}
-
-#signup_title {
-    display: none;
 }
 
 #main_center label {
@@ -166,7 +162,7 @@ input[type="submit"]:hover {
     text-align: left;
 }
 
-#to_dashboard_btn {
+#go_dashboard_btn {
     float: left;
     margin: 0 0 10px 10px;
 }
@@ -176,7 +172,7 @@ input[type="submit"]:hover {
     margin: 0 10px 10px 0;
 }
 
-#to_dashboard_btn,
+#go_dashboard_btn,
 #logut_btn {
     font-size: 12px;
 }
@@ -191,21 +187,7 @@ input[type="submit"]:hover {
     margin: 10px 0 10px 0;
 }
 
-
-#login_title {
-    display: block;
-}
-
-#login_center {
-    display: block;
-}
-
-#signup_center {
-    display: none;
-}
-
 #main_center {
-    display: none;
     padding: 0;
     text-align: center;
 }
@@ -218,14 +200,22 @@ input[type="submit"]:hover {
     text-align: center;
 }
 
-#invalid-login, #invalid-submit, #invalid-match{
+#invalid_login, #invalid_submit, #invalid_match{
     display: none;
 }
 
-.login-pass{
+.login_pass{
     margin-top: 5px;
 }
 
 #login_submit, #signup_submit{
     margin-top: -10px;
+}
+
+#main_page {
+    display: none;
+}
+
+#signup_page {
+    display: none;
 }

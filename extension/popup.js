@@ -1,81 +1,76 @@
-const to_signup_elm = document.getElementById("to_signup")
+console.log("popopop");
+const toSignupElm = document.getElementById("to_signup")
 const signupForm = document.getElementById("signup_form");
-const loginForm = document.getElementById("login-form");
+const loginForm = document.getElementById("login_form");
 const loginButton = document.getElementById("login_submit");
-const last_note_textarea = document.getElementById("last_note");
-const backToLoginBTN = document.getElementById('back-to-login');
-const text_selector = document.querySelectorAll('h1, h2, h3, h4, h5, p, li, td, caption, span, a')
+const backToLoginBTN = document.getElementById('back_to_login');
+const logutBtn = document.getElementById("logut_btn");
+const goToDashboardBtn = document.getElementById("go_dashboard_btn");
+const folderSelectList = document.getElementById("folder");
+const apiUrl = "https://note-damus0.herokuapp.com/api";
+const dashboardLink = "https://notedamus-cad4d.firebaseapp.com/";
 
-var login_title = document.getElementById('login_title');
-var login_center = document.getElementById('login_center');
+var loginPage = document.getElementById('login_page');
+var mainPage = document.getElementById('main_page');
+var signupPage = document.getElementById('signup_page');
 
-var signup_title = document.getElementById('signup_title');
-var signup_center = document.getElementById('signup_center');
+let hasLogged = false;
+let userId = -1;
 
-var main_center = document.getElementById('main_center');
-
-
-if (to_signup) {
-	to_signup.addEventListener("click", to_signup_form);
+if(userId <= 0){
+	toLoginPage();
+}else{
+	toMainPage();
 }
 
-function to_main_page() {
-	if (login_title && login_title.style) {
-		login_title.style.display = "none";
+if (toSignupElm) {
+	toSignupElm.addEventListener("click", toSignupPage);
+}
+
+function toMainPage() {
+
+	if(loginPage && loginPage.style){
+		loginPage.style.display = "none";
 	}
 
-	if (login_center && login_center.style) {
-		login_center.style.display = "none";
+	if(signupPage && signupPage.style){
+		signupPage.style.display = "none";
 	}
 
-	if (main_center && main_center.style) {
-		main_center.style.display = 'block';
+	if (mainPage && mainPage.style) {
+		mainPage.style.display = 'block';
+	}
+
+	fillFolderList(userId);
+}
+
+function toSignupPage() {
+
+	if(loginPage && loginPage.style){
+		loginPage.style.display = "none";
+	}
+
+	if (mainPage && mainPage.style) {
+		mainPage.style.display = 'none';
+	}
+
+	if(signupPage && signupPage.style){
+		signupPage.style.display = 'block';
 	}
 }
 
-function to_signup_form() {
+function toLoginPage() {
 
-	if (login_title && login_title.style) {
-		login_title.style.display = "none";
+	if(signupPage && signupPage.style){
+		signupPage.style.display = 'none';
 	}
 
-	if (login_center && login_center.style) {
-		login_center.style.display = "none";
+	if (mainPage && mainPage.style) {
+		mainPage.style.display = 'none';
 	}
 
-	if (main_center && main_center.style) {
-		main_center.style.display = 'none';
-	}
-
-	if (signup_title && signup_title.style) {
-		signup_title.style.display = 'block';
-	}
-
-	if (signup_center && signup_center.style) {
-		signup_center.style.display = 'block';
-	}
-}
-
-function to_login_form() {
-
-	if (signup_title && signup_title.style) {
-		signup_title.style.display = 'none';
-	}
-
-	if (signup_center && signup_center.style) {
-		signup_center.style.display = 'none';
-	}
-
-	if (main_center && main_center.style) {
-		main_center.style.display = 'none';
-	}
-
-	if (login_title && login_title.style) {
-		login_title.style.display = "block";
-	}
-
-	if (login_center && login_center.style) {
-		login_center.style.display = "block";
+	if(loginPage && loginPage.style){
+		loginPage.style.display = "block";
 	}
 }
 
@@ -89,8 +84,8 @@ chrome.commands.onCommand.addListener(function (command) {
 	}
 });
 
-var folderSelectList = document.getElementById('folder');
-folderSelectList.addEventListener("change", function () {
+var folderSelectListInput = document.getElementById('folder');
+folderSelectListInput.addEventListener("change", function () {
 	let folderId = folderSelectList.value;
 	console.log(folderId);
 
@@ -124,10 +119,10 @@ colorSelectList.addEventListener("change", function () {
 loginForm.addEventListener('submit', function (s) {
 	s.preventDefault();
 
-	let email =  document.getElementById("login-email").value;
-	let pswd =  document.getElementById("login-pswd").value;
+	let email =  document.getElementById("login_email").value;
+	let pswd =  document.getElementById("login_pswd").value;
 
-	fetch('https://note-damus0.herokuapp.com/api/auth/login',{
+	fetch(apiUrl + '/auth/login',{
 		method:'POST',
 		body:JSON.stringify({
 			"email": email,
@@ -143,18 +138,14 @@ loginForm.addEventListener('submit', function (s) {
 	.then(function(data){
 		console.log(data);
 		if(data.user && data.user.id){
-			chrome.tabs.query({
-				currentWindow: true,
-				active: true
-			}, function (tabs) {
-				chrome.tabs.sendMessage(tabs[0].id, {
-					"userId": data.user.id
-				});
-				document.getElementById('invalid-login').style.display="none";
-				to_main_page();
-			});
+			document.getElementById('invalid_login').style.display="none";
+			hasLogged = true;
+			userId = data.user.id;
+			sendUserIdMessage(data.user.id)
+			toMainPage();
 		}else{
-			document.getElementById('invalid-login').style.display="block";
+			document.getElementById('invalid_login').style.display="block";
+			hasLogged =false;
 		}
 	})
 });
@@ -164,14 +155,14 @@ signupForm.addEventListener('submit', function (s) {
 
 	let first_name =  document.getElementById("name").value;
 	let last_name =  document.getElementById("surname").value;
-	let email =  document.getElementById("signup-email").value;
-	let pswd =  document.getElementById("signup-pswd").value;
-	let retyped_pswd =  document.getElementById("retyped-pswd").value;
+	let email =  document.getElementById("signup_email").value;
+	let pswd =  document.getElementById("signup_pswd").value;
+	let retyped_pswd =  document.getElementById("retyped_pswd").value;
 
 	if(pswd == retyped_pswd){
-		document.getElementById('invalid-match').style.display="none";
+		document.getElementById('invalid_match').style.display="none";
 
-		fetch('https://note-damus0.herokuapp.com/api/auth/register',{
+		fetch(apiUrl + '/auth/register',{
 			method:'POST',
 			body:JSON.stringify({
 				"first_name": first_name,
@@ -190,25 +181,63 @@ signupForm.addEventListener('submit', function (s) {
 		.then(function(data){
 			console.log(data);
 			if(data.user && data.user.id){
-				chrome.tabs.query({
-					currentWindow: true,
-					active: true
-				}, function (tabs) {
-					chrome.tabs.sendMessage(tabs[0].id, {
-						"userId": data.user.id
-					});
-					document.getElementById('invalid-submit').style.display="none";
-					to_login_form();
-				});
+				document.getElementById('invalid_submit').style.display="none";
+				toLoginPage();
 			}else{
-				document.getElementById('invalid-submit').style.display="block";
+				document.getElementById('invalid_submit').style.display="block";
 			}
 		})
 	}else{
-		document.getElementById('invalid-match').style.display="block";
+		document.getElementById('invalid_match').style.display="block";
 	}
 });
 
 backToLoginBTN.addEventListener('click', function (s) {
-	to_login_form();
+	toLoginPage();
 })
+
+goToDashboardBtn.addEventListener('click', function (s) {
+	window.open(dashboardLink, "_blank");
+})
+
+logutBtn.addEventListener('click', function (s) {
+	sendUserIdMessage(-1);
+	toLoginPage();
+})
+
+
+function fillFolderList(userId){
+
+	folder_list = {}
+
+	fetch(apiUrl + '/folders/?user='+userId,{
+            method:'GET',
+        })
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            if(data){
+                data.forEach(folder => {
+					var option = document.createElement("option");
+					option.value = folder.id;
+					option.text = folder.title;
+					folderSelectList.appendChild(option);
+                });
+            }else{
+                console.log("loading of folder list was unsuccessful");
+            }
+        })
+}
+
+function sendUserIdMessage(user_id){
+	chrome.tabs.query({
+		currentWindow: true,
+		active: true
+	}, function (tabs) {
+		chrome.tabs.sendMessage(tabs[0].id, {
+			"userId": user_id
+		});
+	});
+}

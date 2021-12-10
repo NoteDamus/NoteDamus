@@ -1,19 +1,14 @@
-let folderId = 0;
+let folderId = 1;
 
-let folder_list = {
-    0: "General",
-    1: "Math1",
-    2: "Math2",
-    3: "Math3"
-}
+let folderList = {}
 
 chrome.runtime.onInstalled.addListener(() => {
     console.log("beginning of background");
 
-    for (let key of Object.keys(folder_list)) {
+    for (let key of Object.keys(folderList)) {
         chrome.contextMenus.create({
             id: key,
-            title: folder_list[key],
+            title: folderList[key],
             type: 'normal',
             contexts: ['selection']
         });
