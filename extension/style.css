@@ -15,7 +15,6 @@ body {
 
 .center {
     padding: 0 10px;
-    box-sizing: border-box;
 }
 
 
@@ -24,10 +23,6 @@ body {
     text-align: center;
     padding: 10px 0;
     border-bottom: 1px solid silver;
-}
-
-.center form {
-    box-sizing: border-box;
 }
 
 form .txt_field {
@@ -200,10 +195,6 @@ input[type="submit"]:hover {
     text-align: center;
 }
 
-#invalid_login, #invalid_submit, #invalid_match{
-    display: none;
-}
-
 .login_pass{
     margin-top: 5px;
 }
@@ -212,10 +203,7 @@ input[type="submit"]:hover {
     margin-top: -10px;
 }
 
-#main_page {
-    display: none;
-}
-
-#signup_page {
+#main_page, #signup_page,
+#invalid_login, #invalid_submit, #invalid_match {
     display: none;
 }

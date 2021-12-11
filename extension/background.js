@@ -1,10 +1,8 @@
-let folderId = 1;
-
+let folderId = -1;
 let folderList = {}
 
 chrome.runtime.onInstalled.addListener(() => {
-    console.log("beginning of background");
-
+    console.log("beginning of background script");
     for (let key of Object.keys(folderList)) {
         chrome.contextMenus.create({
             id: key,
@@ -29,10 +27,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 });
 
 chrome.commands.onCommand.addListener(function (command) {
-    console.log("before save");
     if (command === "save") {
-        console.log("saving started");
-
         chrome.tabs.query({
             active: true,
             currentWindow: true
@@ -44,8 +39,6 @@ chrome.commands.onCommand.addListener(function (command) {
                 saveHighlightedText(tabs[0].id, selection[0].result, "url", tabs[0].url)
             });
         });
-
-        console.log("saving finished");
     }
 });
 
