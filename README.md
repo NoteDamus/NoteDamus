@@ -1,7 +1,8 @@
 # NoteDamus
 
 FOR DEMO 
-cad4d.firebaseapp.com
+
+https://notedamus-cad4d.firebaseapp.com/
 test@test.com
 123456789
 
